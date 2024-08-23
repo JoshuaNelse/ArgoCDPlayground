@@ -1,0 +1,7 @@
+apiVersion: storage.gcp.crossplane.io/v1alpha3
+kind: Bucket
+metadata:
+  annotations:
+    crossplane.io/external-name: joshs-crossplane-bucket-100-200
+  name: crossplan-bucket
+  namespace: learning

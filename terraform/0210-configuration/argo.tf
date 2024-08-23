@@ -37,3 +37,37 @@ spec:
     app.kubernetes.io/name: argocd-server
 YAML
 }
+
+resource "kubectl_manifest" "repo" {
+  yaml_body = <<YAML
+apiVersion: v1
+kind: Secret
+metadata:
+  name: private-repo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  type: git
+  url: ${var.argo_core_repo}
+YAML
+}
+
+resource "kubectl_manifest" "learning_application" {
+  yaml_body = <<YAML
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: learning
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: ${var.argo_core_repo}
+    targetRevision: HEAD
+    path: argo/bucket
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: learning
+YAML
+}
