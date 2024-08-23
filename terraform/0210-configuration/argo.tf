@@ -53,7 +53,7 @@ stringData:
 YAML
 }
 
-resource "kubectl_manifest" "learning_application" {
+resource "kubectl_manifest" "application" {
   override_namespace = "argocd"
   yaml_body = <<YAML
 apiVersion: argoproj.io/v1alpha1
@@ -69,6 +69,6 @@ spec:
     path: argo/bucket
   destination:
     server: https://kubernetes.default.svc
-    namespace: learning
+    namespace: argocd
 YAML
 }

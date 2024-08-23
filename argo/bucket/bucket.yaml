@@ -2,7 +2,6 @@ apiVersion: storage.gcp.upbound.io/v1beta1
 kind: Bucket
 metadata:
   name: josh-crossplane-bucket-100-100
-  namespace: argocd
   labels:
     docs.crossplane.io/example: provider-gcp
 spec:
