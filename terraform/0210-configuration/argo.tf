@@ -54,6 +54,7 @@ YAML
 }
 
 resource "kubectl_manifest" "learning_application" {
+  override_namespace = "argocd"
   yaml_body = <<YAML
 apiVersion: argoproj.io/v1alpha1
 kind: Application

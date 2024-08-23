@@ -1,7 +1,14 @@
-apiVersion: storage.gcp.crossplane.io/v1alpha3
+apiVersion: storage.gcp.upbound.io/v1beta1
 kind: Bucket
 metadata:
-  annotations:
-    crossplane.io/external-name: joshs-crossplane-bucket-100-200
-  name: crossplan-bucket
-  namespace: learning
+  name: josh-crossplane-bucket-100-100
+  namespace: argocd
+  labels:
+    docs.crossplane.io/example: provider-gcp
+spec:
+  forProvider:
+    location: US
+  providerConfigRef:
+    name: default
+
+
